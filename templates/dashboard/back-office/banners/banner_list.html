@@ -1,0 +1,41 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Banner List</h1>
+    <a href="{% url 'banner_create' %}" class="btn btn-primary mb-3">Create New Banner</a>
+
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Sub Title</th>
+                <th scope="col">Image</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for banner in banners %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ banner.title }}</td>
+                    <td>{{ banner.sub_title }}</td>
+                    <td>
+                        {% if banner.image %}
+                            <img src="{{ banner.image.url }}" alt="{{ banner.title }}" class="img-thumbnail" style="max-width: 100px;">
+                        {% else %}
+                            No Image
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'banner_update' banner.pk %}" class="btn btn-sm btn-warning">Update</a>
+                        <a href="{% url 'banner_delete' banner.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

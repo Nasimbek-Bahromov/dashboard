@@ -1,0 +1,18 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Info Details</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ object.address }}</h5>
+            <p class="card-text"><strong>Phone:</strong> {{ object.phone }}</p>
+            <p class="card-text"><strong>Email:</strong> {{ object.email }}</p>
+            <p class="card-text"><strong>Created:</strong> {{ object.created }}</p>
+            <a href="{% url 'info_update' object.pk %}" class="btn btn-warning">Edit</a>
+            <a href="{% url 'info_delete' object.pk %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'info_list' %}" class="btn btn-secondary">Back to list</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

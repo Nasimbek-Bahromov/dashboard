@@ -1,0 +1,25 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-primary">Contacts</h1>
+        <a href="{% url 'contact_create' %}" class="btn btn-success">Add New Contact</a>
+    </div>
+    <div class="list-group shadow-sm">
+        {% for contact in contacts %}
+            <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border rounded mb-2">
+                <div>
+                    <h5 class="mb-1">{{ contact.name }}</h5>
+                </div>
+                <div class="btn-group">
+                    <a href="{% url 'contact_update' contact.pk %}" class="btn btn-warning btn-sm me-2">Update</a>
+                    <a href="{% url 'contact_delete' contact.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </div>
+        {% empty %}
+            <div class="list-group-item text-center text-muted">No contacts available.</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

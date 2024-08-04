@@ -1,0 +1,48 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Info List</h1>
+    <a href="{% url 'info_create' %}" class="btn btn-primary mb-3">
+        <i class="bi bi-plus"></i> Add New Info
+    </a>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for info in infos %}
+                <tr>
+                    <td>{{ info.address }}</td>
+                    <td>{{ info.phone }}</td>
+                    <td>{{ info.email }}</td>
+                    <td>{{ info.created }}</td>
+                    <td>
+                        <a href="{% url 'info_detail' info.pk %}" class="btn btn-info btn-sm" title="View Details">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                        <a href="{% url 'info_update' info.pk %}" class="btn btn-warning btn-sm" title="Edit Info">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a href="{% url 'info_delete' info.pk %}" class="btn btn-danger btn-sm" title="Delete Info">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">No info available.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
